@@ -144,8 +144,8 @@ config = {
 
 # Initialize tokenizer once
 tokenizer = ByteLevelBPETokenizer(
-    './KassandraTokenizer-vocab.json',
-    './KassandraTokenizer-merges.txt'
+    './tokenizer/KassandraTokenizer-vocab.json',
+    './tokenizer/KassandraTokenizer-merges.txt'
 )
 
 data_module = KassandraDataModule(
