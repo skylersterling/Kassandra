@@ -1,0 +1,4 @@
+torch
+transformers
+tokenizers==0.4.2
+pytorch-lightning
