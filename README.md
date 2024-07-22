@@ -97,13 +97,30 @@ To perform inference on a Kassandra model, you can follow the following example:
 
 ```python
 
-text = generate_text(
-    model,
-    tokenizer,
-    prompt="Once upon a time",
-    max_length=100
+from tokenizers import ByteLevelBPETokenizer
+
+torch.manual_seed(123)
+
+input_text = "Once upon a time"
+
+tokenizer = ByteLevelBPETokenizer(
+    './tokenizer/KassandraTokenizer-vocab.json',
+    './tokenizer/KassandraTokenizer-merges.txt'
 )
-print(text)
+
+encoded = tokenizer.encode(input_text)
+encoded_tensor = torch.tensor(encoded).unsqueeze(0)
+
+out = generate(
+    model=model,
+    idx=encoded_tensor,
+    max_new_tokens=1,
+    context_size=config["context_length"]
+)
+decoded_text = tokenizer.decode(out.squeeze(0).tolist())
+
+print("Output text:", decoded_text)
+
 ```
 
 ## Acknowledgements
