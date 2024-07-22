@@ -2,9 +2,9 @@ from kassandra_lightning import *
 
 learning_rate = 1e-4
 weight_decay = 0.1
-max_epochs = 1
-batch_size = 6
-gradient_accumulation = 1
+max_epochs = 10
+batch_size = 32
+gradient_accumulation = 6
 
 config = {
     "vocab_size": 30000,
