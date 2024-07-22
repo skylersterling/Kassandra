@@ -97,7 +97,27 @@ To perform inference on a Kassandra model, you can follow the following example:
 
 ```python
 
+from kassandra_architecture import *
 from tokenizers import ByteLevelBPETokenizer
+import torch
+
+config = {
+    "vocab_size": 30000,
+    "context_length": 1024,
+    "original_maximum_sequence_length": 1024,
+    "sliding_attention_window_size": 1024,
+    "input_dimension": 2048,
+    "number_of_attention_heads": 32,
+    "layers": 12,
+    "dropout": 0.1,
+    "causality": True,
+    "rotary_embedding_window_chunk_size": 1024,
+    "rope_theta_base_variation_frequency": 10000,
+    "qkv_bias": False,
+    "gradient_checkpointing": False
+}
+
+model = Kassandra(config)
 
 torch.manual_seed(123)
 
@@ -109,12 +129,13 @@ tokenizer = ByteLevelBPETokenizer(
 )
 
 encoded = tokenizer.encode(input_text)
-encoded_tensor = torch.tensor(encoded).unsqueeze(0)
+encoded_ids = encoded.ids
+encoded_tensor = torch.tensor(encoded_ids).unsqueeze(0)
 
 out = generate(
     model=model,
     idx=encoded_tensor,
-    max_new_tokens=1,
+    max_new_tokens=50,
     context_size=config["context_length"]
 )
 decoded_text = tokenizer.decode(out.squeeze(0).tolist())
