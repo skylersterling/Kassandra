@@ -55,13 +55,39 @@ The training process can be managed through various libraries or a custom PyTorc
 
 ```python
 
+from kassandra_lightning import *
+
+config = {
+    "vocab_size": 30000,
+    "context_length": 1024,
+    "original_maximum_sequence_length": 1024,
+    "sliding_attention_window_size": 1024,
+    "input_dimension": 2048,
+    "number_of_attention_heads": 32,
+    "layers": 12,
+    "dropout": 0.1,
+    "causality": True,
+    "rotary_embedding_window_chunk_size": 1024,
+    "rope_theta_base_variation_frequency": 10000,
+    "qkv_bias": False,
+    "gradient_checkpointing": False
+}
+
+learning_rate = 1e-4
+weight_decay = 0.1
+max_epochs = 1
+batch_size = 1
+gradient_accumulation = 6
+
+model = Kassandra(config)
+
 tokenizer = ByteLevelBPETokenizer(
     './tokenizer/KassandraTokenizer-vocab.json',
     './tokenizer/KassandraTokenizer-merges.txt'
 )
 
 data_module = KassandraDataModule(
-    file_path='./UnprocessedWikipediaTextCorpus.txt',
+    file_path='./dataset.txt',
     tokenizer=tokenizer,
     context_length=config['context_length'],
     batch_size=batch_size
@@ -71,12 +97,6 @@ print("Setting up data module.")
 data_module.setup()
 
 model = KassandraLightning(model, config, learning_rate, weight_decay, max_epochs, tokenizer)
-
-learning_rate = 1e-4
-weight_decay = 0.1
-max_epochs = 10
-batch_size = 32
-gradient_accumulation = 6
 
 trainer = pl.Trainer(
     max_epochs=max_epochs,
