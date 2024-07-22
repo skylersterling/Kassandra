@@ -77,7 +77,7 @@ class MultiHeadAttention(nn.Module):
 
         return context_vector
 
-        class TransformerBlock(nn.Module):
+class TransformerBlock(nn.Module):
     def __init__(self, cfg):
         super().__init__()
         self.multi_head_attention = MultiHeadAttention(
