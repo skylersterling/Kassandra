@@ -99,7 +99,6 @@ To perform inference on a Kassandra model, you can follow the following example:
 
 from kassandra_architecture import *
 from tokenizers import ByteLevelBPETokenizer
-import torch
 
 config = {
     "vocab_size": 30000,
