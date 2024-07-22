@@ -4,7 +4,7 @@ import mmap
 import torch
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
-from transformers import ByteLevelBPETokenizer
+from tokenizers import ByteLevelBPETokenizer
 from tqdm import tqdm
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import ModelCheckpoint
