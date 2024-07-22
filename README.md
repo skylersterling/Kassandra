@@ -51,7 +51,7 @@ model = Kassandra(config)
 
 #### Training
 
-The training process can be managed through various libraries or a custom PyTorch training loop. This repository provides a simple [example](train.py) of fitting Kassandra with PyTorch Lightning on a .txt dataset for your convenience:
+The training process can be managed through various libraries or a custom PyTorch training loop. This repository provides a simple [example](train_example.py) of fitting Kassandra with PyTorch Lightning on a .txt dataset for your convenience:
 
 ```python
 
