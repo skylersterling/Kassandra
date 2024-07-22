@@ -117,6 +117,7 @@ config = {
 }
 
 model = Kassandra(config)
+model.eval()
 
 torch.manual_seed(123)
 
