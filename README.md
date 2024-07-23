@@ -174,6 +174,6 @@ print("Output text:", decoded_text)
 
 ## Contact
 
-If you have any questions or issues, or if you need a custom licensing scheme, please open an issue in this repository or feel free to contact me directly at email@.com. You are encouraged to use this architecture to train your own models, provided that proper attribution is given in the model card.
+If you have any questions or issues, or if you need a custom licensing scheme, please open an issue in this repository or feel free to contact me directly at [sterling-corporate@outlook.com](sterling-corporate@outlook.com). You are encouraged to use this architecture to train your own models, provided that proper attribution is given in the model card.
 
 ---
